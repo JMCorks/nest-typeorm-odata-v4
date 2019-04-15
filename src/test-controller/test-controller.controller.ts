@@ -19,7 +19,13 @@ export class TestControllerController {
     type: TestEntity,
     isArray: true,
   })
-  @ApiImplicitQuery({ name: '$filter', type: String, required: false })
+  @ApiImplicitQuery({ name: '$expand', type: String, required: false })
+  @ApiImplicitQuery({ name: '$filter', type: String, required: false })
+  @ApiImplicitQuery({ name: '$select', type: String, required: false })
+  @ApiImplicitQuery({ name: '$orderby', type: String, required: false })
+  @ApiImplicitQuery({ name: '$top', type: Number, required: false })
+  @ApiImplicitQuery({ name: '$skip', type: Number, required: false })
+  @ApiImplicitQuery({ name: '$count', type: Boolean, required: false }) 
   public query(@Request() req): Promise<TestEntity[]> {
     return executeQuery(this.testEntityRepository, req.query, {});
   }
